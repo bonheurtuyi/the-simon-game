@@ -14,16 +14,32 @@ $(document).ready(function () {
         button.fadeIn(100).fadeOut(100).fadeIn(100);
 
         //This code no longer works as the browser requires user interaction to play any sound
-        let audio = new Audio("./sounds/" + randomChosenColor + ".mp3");
-        audio.play();
+        playSound(randomChosenColor);
 
         $(".btn").click(function () {
             let userChosenColor = $(this).attr("id");
             userClickedPattern.push(userChosenColor);
             console.log(userClickedPattern);
+            playSound(userChosenColor);
+            animatePress(userChosenColor);
         })
     }
 
-    nextSequence();
+    //Function to play sound
+    function playSound(colorChoice){
+        let btnPlaySound = new Audio("./sounds/" + colorChoice + ".mp3");
+        btnPlaySound.play();
+    }
 
+    //Animate button press
+    function animatePress(currentColor){
+        let buttonSelector = $("#" + currentColor);
+        buttonSelector.addClass("pressed");
+
+        setTimeout(function() {
+            buttonSelector.removeClass("pressed");
+        }, 100);
+    }
+
+    nextSequence();
 })
