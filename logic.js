@@ -58,7 +58,7 @@ $(document).ready(function () {
         }, 100);
     }
 
-    //Verifying input patterns from user
+    //Verifying input patterns from the user
     function checkAnswer(currentLevel){
         if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
             if (userClickedPattern.length === gamePattern.length) {
@@ -69,8 +69,23 @@ $(document).ready(function () {
             }
         }
         else{
-            console.log("Wrong");
+            let wrongSound = "wrong";
+            playSound(wrongSound);
+            $("body").addClass('game-over');
+            setTimeout(function (){
+                $("body").removeClass('game-over');
+            }, 250)
+
+            $("#level-title").text("Game Over!, Press any key to restart!");
+            startOver();
         }
     }
 
+    //Game restart
+    function startOver(){
+        level = 0;
+        gamePattern = [];
+        userClickedPattern = [];
+        started = false;
+    }
 });
