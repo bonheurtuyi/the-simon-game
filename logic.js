@@ -20,9 +20,10 @@ $(document).ready(function () {
 
         playSound(userChosenColor);
         animatePress(userChosenColor);
-        setTimeout(function (){
-            nextSequence();
-        },1000);
+
+        checkAnswer(userClickedPattern.length - 1);
+
+
     })
 
     function nextSequence(){
@@ -38,8 +39,6 @@ $(document).ready(function () {
 
         //This code no longer works as the browser requires user interaction to play any sound
         playSound(randomChosenColor);
-        console.log(gamePattern);
-        console.log(userClickedPattern);
 
     }
 
@@ -57,6 +56,21 @@ $(document).ready(function () {
         setTimeout(function() {
             buttonSelector.removeClass("pressed");
         }, 100);
+    }
+
+    //Verifying input patterns from user
+    function checkAnswer(currentLevel){
+        if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+            if (userClickedPattern.length === gamePattern.length) {
+                setTimeout(function (){
+                    nextSequence();
+                },1000);
+                userClickedPattern = [];
+            }
+        }
+        else{
+            console.log("Wrong");
+        }
     }
 
 });
