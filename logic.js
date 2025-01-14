@@ -20,6 +20,9 @@ $(document).ready(function () {
 
         playSound(userChosenColor);
         animatePress(userChosenColor);
+        setTimeout(function (){
+            nextSequence();
+        },1000);
     })
 
     function nextSequence(){
@@ -35,6 +38,8 @@ $(document).ready(function () {
 
         //This code no longer works as the browser requires user interaction to play any sound
         playSound(randomChosenColor);
+        console.log(gamePattern);
+        console.log(userClickedPattern);
 
     }
 
@@ -54,4 +59,4 @@ $(document).ready(function () {
         }, 100);
     }
 
-})
+});
