@@ -22,8 +22,6 @@ $(document).ready(function () {
         animatePress(userChosenColor);
 
         checkAnswer(userClickedPattern.length - 1);
-
-
     })
 
     function nextSequence(){
